@@ -7,7 +7,7 @@ function createBot (delayMs: number): Bot {
     const { data } = event
     if (typeof data === 'string') {
       const msg = JSON.parse(data)[0]
-      if (msg.p?.name === 'Qhy ｢ qhelp ｣ ' && msg.p?.bot === true) {
+      if (msg.p?.name === 'Qhy ｢ qhelp ｣ ' && msg.p?.tag === 'BOT') {
         const text = trimWhitespace(msg.a)
         if (
           text.includes('Solvе') &&

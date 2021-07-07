@@ -7,7 +7,7 @@ function createBot (delayMs: number): Bot {
     const { data } = event
     if (typeof data === 'string') {
       const msg = JSON.parse(data)[0]
-      if (msg.p?.name === 'Qhy ｢ qhelp ｣ ' && msg.p?.bot === true) {
+      if (msg.p?.name === 'Qhy ｢ qhelp ｣ ' && msg.p?.tag === 'BOT') {
         const text = decipherString(trimWhitespace(msg.a))
         if (
           text.includes('Type') &&
@@ -17,7 +17,7 @@ function createBot (delayMs: number): Bot {
           // @ts-ignore
           const word = text.match(/｢ (.*) ｣/)[1]
 
-          await sleep(delayMs)
+          await sleep(delayMs + word.length * 50)
           sendMessage(word)
         }
       }

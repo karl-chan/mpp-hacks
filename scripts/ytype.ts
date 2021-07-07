@@ -7,39 +7,31 @@ function createBot (delayMs: number): Bot {
     const { data } = event
     if (typeof data === 'string') {
       const msg = JSON.parse(data)[0]
-      if (msg.p?.name === 'Theta [=help]' && msg.p?.tag === 'BOT') {
+      if (msg.p?.name === 'Yoshino ( y!help )' && msg.p?.tag === 'BOT') {
         const text = decipherString(trimWhitespace(msg.a))
         if (
-          text.includes('Solve') &&
+          text.includes('Type') &&
           text.includes('[') &&
           text.includes(']')
         ) {
-        // @ts-ignore
-          const expr = text.match(/\[(.*)\]/)[1]
-            .replace(/l/g, '1')
-            .replace(/O/g, '0')
-            .replace(/[+⧾]/u, '+')
-            .replace(/[−‐‑˗]/, '-')
-            .replace(/[xх]/, '*')
-            .replace(/[∕/Ⳇ⁄]/, '/')
-          // eslint-disable-next-line no-eval
-          const ans = eval(expr)
+          // @ts-ignore
+          const word = text.match(/\[ (.*) \]/)[1]
 
           await sleep(delayMs)
-          sendMessage(ans.toString())
+          sendMessage(word)
         }
       }
     }
   }
 }
 
-export async function tmath (delayMs = 0) {
-  stopTmath()
+export async function ytype (delayMs = 0) {
+  stopYtype()
   bot = createBot(delayMs)
   window.MPP.client.ws.addEventListener('message', bot)
 }
 
-export async function stopTmath () {
+export async function stopYtype () {
   if (bot) {
     window.MPP.client.ws.removeEventListener('message', bot)
     bot = undefined

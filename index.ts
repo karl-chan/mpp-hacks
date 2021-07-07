@@ -2,6 +2,7 @@ import { stopTmath, tmath } from './scripts/=math'
 import { stopTtype, ttype } from './scripts/=type'
 import { qmath, stopQmath } from './scripts/qmath'
 import { qtype, stopQtype } from './scripts/qtype'
+import { stopYtype, ytype } from './scripts/ytype'
 
 async function all (delayMs : number | undefined) {
   await Promise.all([
@@ -24,4 +25,4 @@ async function theta (delayMs : number | undefined) {
   ])
 }
 
-export { all, qmath, qtype, tmath, ttype, stopQmath, stopQtype, stopTmath, stopTtype }
+export { all, qmath, qtype, tmath, ttype, ytype, stopQmath, stopQtype, stopTmath, stopTtype, stopYtype }
